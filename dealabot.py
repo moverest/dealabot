@@ -61,14 +61,10 @@ def get_deals_by_page(page_num):
 def get_deals(num_pages):
     """Returns the list of deals from page 1 to num_pages. See get_deals_by_page()
     for details on how the data is stored."""
-    deals = []
-    for i in range(1, num_pages+1):
-        deals += get_deals_by_page(i)
-
-    return deals
+    return list(map(get_deals_by_page, range(1, num_pages+1)))
 
 def notifier_freemobile(msg, params):
-    """Sends a SMS with the Free Mobile API. Return True on success."""
+    """Sends a SMS with the Free Mobile API. Returns True on success."""
     params = params.split(",")
     params = {
             "user": params[0],
